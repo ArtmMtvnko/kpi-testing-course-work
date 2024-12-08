@@ -1,10 +1,11 @@
 {
   "name": "kpi-testing",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "build": "rimraf dist && tsc",
+    "start": "npm run build && node dist/index.js",
     "prewatch": "npm run build",
     "watch": "concurrently \"tsc -w\" \"nodemon dist/index.js\"",
     "test": "jest"
