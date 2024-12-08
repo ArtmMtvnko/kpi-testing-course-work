@@ -1,5 +1,5 @@
 import { UnnamedUnitResult } from '../interfaces/result.interface'
-import { Store } from '../store'
+import { Store } from '../types/store.type'
 
 export class Unit {
     private _label: string

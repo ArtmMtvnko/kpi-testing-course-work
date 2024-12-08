@@ -1,6 +1,8 @@
 import { store } from "./store"
 import { expect } from "./utils/expect.utils"
 import { describe } from "./utils/desctibe.utils"
+import { Statistics } from "./utils/Statistics.utils"
+import { log } from "./utils/logger.utils"
 
 export function sum(a: number, b: number): number {
     return a + b
@@ -44,4 +46,32 @@ describe('testing sum function', (unit) => {
     })
 })
 
-console.log(store)
+describe('testing deep checking', (unit) => {
+    unit.test('is arrays equal', () => {
+        return expect([1,2,3]).toEqual([1,2,3])
+    })
+
+    unit.test('is arrays not equal', () => {
+        return expect([1,2,4]).toEqual([1,2,3])
+    })
+
+    unit.test('is shuffled arrays equal', () => {
+        return expect([1,3,2]).toEqual([1,2,3])
+    })
+
+    unit.test('is nested arrays equal', () => {
+        return expect([1,3,{
+            a: [1,2,6]
+        }]).toEqual([1,3,{ a: [1,2,6] }])
+    })
+})
+
+log(store)
+
+const stats = new Statistics(store)
+
+const entries = store.entries()
+entries.next()
+const secondItem = entries.next().value!
+
+stats.calculateModuleStatistics(secondItem)

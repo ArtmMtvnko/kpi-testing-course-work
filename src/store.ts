@@ -1,5 +1,3 @@
-import { UnitResult } from './interfaces/result.interface'
-
-export type Store = Map<string, UnitResult[]>
+import { Store } from './types/store.type'
 
 export const store: Store = new Map()

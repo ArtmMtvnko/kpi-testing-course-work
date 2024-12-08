@@ -1,9 +1,8 @@
-import { UnnamedUnitResult } from "../interfaces/result.interface"
-
+import { UnnamedUnitResult } from '../interfaces/result.interface'
 
 class Expect {
     private _actualValue: unknown
-    
+
     constructor(actual: unknown) {
         this._actualValue = actual
     }
@@ -12,7 +11,18 @@ class Expect {
         return {
             expectedResult: expected,
             actualResult: this._actualValue,
-            passed: expected === this._actualValue,
+            passed: expected === this._actualValue
+        }
+    }
+
+    toEqual(expected: unknown): UnnamedUnitResult<unknown> {
+        const actualValueJSON = JSON.stringify(this._actualValue)
+        const expectedValueJSON = JSON.stringify(expected)
+
+        return {
+            expectedResult: expected,
+            actualResult: this._actualValue,
+            passed: actualValueJSON === expectedValueJSON
         }
     }
 }
