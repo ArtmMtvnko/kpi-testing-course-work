@@ -14,7 +14,7 @@ export class Statistics {
         this._store = store
     }
 
-    calculateModuleStatistics(
+    private calculateModuleStatistics(
         module: [string, UnitResult[]]
     ): StatisticsModuleResult {
         const unitsResult = module[1].reduce<StatisticsUnitsResult>(
@@ -50,7 +50,16 @@ export class Statistics {
             stats.push(this.calculateModuleStatistics(module))
         }
 
-        logTable(stats, 'Statistics')
         logTable3(stats, 'Statistics')
+    }
+
+    showTestResultAsTable(): void {
+        for (const [label, result] of this._store) {
+            logTable3(result, label)
+        }
+    }
+
+    showTestResult(): void {
+        log(this._store)
     }
 }
