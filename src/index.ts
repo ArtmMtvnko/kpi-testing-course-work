@@ -1,6 +1,6 @@
 import { store } from './store'
 import { expect } from './utils/expect.utils'
-import { describe } from './utils/desctibe.utils'
+import { describe } from './utils/describe.utils'
 import { Statistics } from './utils/Statistics.utils'
 
 export function sum(a: number, b: number): number {
