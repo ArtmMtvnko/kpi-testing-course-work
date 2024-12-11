@@ -2,7 +2,7 @@ import { store } from "./store"
 import { expect } from "./utils/expect.utils"
 import { describe } from "./utils/desctibe.utils"
 import { Statistics } from "./utils/Statistics.utils"
-import { log } from "./utils/logger.utils"
+import { log, logTable3 } from "./utils/logger.utils"
 
 export function sum(a: number, b: number): number {
     return a + b
@@ -27,6 +27,10 @@ describe('parent', (unit) => {
 
     unit.test('child 2', () => {
         return expect('asdf').toBe('qwerty')
+    })
+
+    unit.test('child 3', () => {
+        return expect(null).toBe('qwerty')
     })
 })
 
@@ -66,12 +70,23 @@ describe('testing deep checking', (unit) => {
     })
 })
 
-log(store)
+// log(store)
+// store.forEach(item => console.table(item))
+
+for (const item of store) {
+    logTable3(item[1], item[0])
+}
+
+// store.forEach(item => logTable3(item))
 
 const stats = new Statistics(store)
+stats.showStatisticsTable()
 
-const entries = store.entries()
-entries.next()
-const secondItem = entries.next().value!
+// const entries = store.entries()
+// entries.next()
+// const secondItem = entries.next().value!
+// log(stats.calculateModuleStatistics(secondItem))
 
-stats.calculateModuleStatistics(secondItem)
+// for (const module of store) {
+//     log(stats.calculateModuleStatistics(module))
+// }
